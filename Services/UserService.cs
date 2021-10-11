@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using twelve_factor_app.Models;
 
@@ -12,17 +13,19 @@ namespace twelve_factor_app.Services
     {
         private readonly ILogger<UserService> _logger;
         private readonly HttpClient _httpClient;
+        private readonly IConfiguration _config;
 
-        public UserService(ILogger<UserService> logger, HttpClient httpClient)
+        public UserService(ILogger<UserService> logger, HttpClient httpClient, IConfiguration configuration)
         {
             _logger = logger;
             _httpClient = httpClient;
+            _config = configuration;
         }
 
         public async Task<IEnumerable<User>> getUsersFromRemote(int count = 1000)
         {
             string serviceUrl = string.Format("https://api.mockaroo.com/api/6351d820?count={0}", count);
-            _httpClient.DefaultRequestHeaders.Add("X-API-Key", "2118bfe0");
+            _httpClient.DefaultRequestHeaders.Add("X-API-Key", _config["MOCK_API_KEY"].ToString());
             var response = await _httpClient.GetAsync(serviceUrl);
 
             _logger.LogInformation("GET /api/6351d820?count={0} : HTTP STATUS {1} : {2}"
