@@ -1,6 +1,6 @@
 using System;
 
-namespace twelve_factor_app
+namespace twelve_factor_app.Models
 {
     public class WeatherForecast
     {
