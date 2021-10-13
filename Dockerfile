@@ -1,8 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-ARG BUILD_ID
-ARG REPO_NAME
-ARG SONAR_URL
-ARG SONAR_LOGIN_KEY
+
 WORKDIR /app
 COPY . .
 
