@@ -15,7 +15,8 @@
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
             "env": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "MOCK_API_KEY": "${env:MOCK_API_KEY}"
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
